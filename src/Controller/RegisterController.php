@@ -25,6 +25,7 @@ class RegisterController extends AbstractController
         $entityManager = $doctrine->getManager();
 
         $user = new User();
+        $plaintextPassword = '';
         $form = $this->createForm(RegisterType::class, $user);
 
         $form->handleRequest($request);
@@ -32,7 +33,8 @@ class RegisterController extends AbstractController
         // hash the password (based on the security.yaml config for the $user class)
         $hashedPassword = $passwordHasher->hashPassword(
             $user,
-            $user->getPassword()
+            $plaintextPassword
+
         );
 
         $user->setPassword($hashedPassword);

@@ -42,9 +42,19 @@ class RegisterType extends AbstractType
                 'label' => 'votre mot de passe',
                 'constraints' => [new Length(['min' => 4, 'max' => 25])],
                 'required' => true,
-                'first_options' => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmer votre mot de passe'],
+                'first_options' => [
+                    'label' => 'Mot de passe',
+                    'attr' => [
+                        'placeholder' => 'Merci de saisir votre mot de passe'
+                    ]
+                ],
+                'second_options' => [
+                    'label' => 'Confirmer votre mot de passe',
+                    'attr' => [
+                        'placeholder' => 'Merci de confirmer votre mot de passe'
+                    ]
 
+                ],
 
 
             ])
