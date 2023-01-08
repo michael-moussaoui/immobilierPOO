@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\AnnouncementRepository;
+use App\Repository\TypeofRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AnnouncementRepository::class)]
-class Announcement
+#[ORM\Entity(repositoryClass: TypeofRepository::class)]
+class Typeof
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,7 +18,7 @@ class Announcement
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Product::class)]
+    #[ORM\OneToMany(mappedBy: 'typeof', targetEntity: Product::class)]
     private Collection $products;
 
     public function __construct()
@@ -60,7 +60,7 @@ class Announcement
     {
         if (!$this->products->contains($product)) {
             $this->products->add($product);
-            $product->setAnnouncement($this);
+            $product->setTypeof($this);
         }
 
         return $this;
@@ -70,8 +70,8 @@ class Announcement
     {
         if ($this->products->removeElement($product)) {
             // set the owning side to null (unless already changed)
-            if ($product->getAnnouncement() === $this) {
-                $product->setAnnouncement(null);
+            if ($product->getTypeof() === $this) {
+                $product->setTypeof(null);
             }
         }
 
