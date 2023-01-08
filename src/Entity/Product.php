@@ -39,14 +39,18 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?Announcement $announcement = null;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Region $region = null;
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?City $city = null;
+
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Location = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $location = null;
 
 
 
@@ -155,6 +159,30 @@ class Product
         return $this;
     }
 
+    public function getcity(): ?City
+    {
+        return $this->city;
+    }
+
+    public function setcity(?City $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getregion(): ?Region
+    {
+        return $this->region;
+    }
+
+    public function setregion(?Region $region): self
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
     public function getPicture(): ?string
     {
         return $this->picture;
@@ -166,16 +194,4 @@ class Product
 
         return $this;
     }
-
-    // public function getLocation(): ?string
-    // {
-    //     return $this->location;
-    // }
-
-    // public function setLocation(string $location): self
-    // {
-    //     $this->location = $location;
-
-    //     return $this;
-    // }
 }

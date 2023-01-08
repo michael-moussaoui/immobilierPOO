@@ -31,16 +31,14 @@ class ProductCrudController extends AbstractCrudController
         // yield TextField::new('type'),
         yield MoneyField::new('price')->setCurrency('EUR');
         yield ImageField::new('picture')
-            ->setFormTypeOptions([
-                'mapped' => false,
-                'required' => false
-            ])
             ->setBasePath('uploads/')
             ->setUploadDir('public/uploads/')
-            ->setUploadedFileNamePattern('[randomhash].[extension]')
-            ->setRequired(false);
+            // ->setUploadedFileNamePattern('[slug].[extension]')
+            ->setSortable(false);
         yield AssociationField::new('announcement');
         yield IntegerField::new('aera');
         yield IntegerField::new('room');
+        // yield AssociationField::new('region');
+        // yield TextField::new('city');
     }
 }
