@@ -5,6 +5,8 @@
 
 {% block content %}
 
+	{% if block ('search') is defined %}{% endif %}
+
 	<div class="row">
 
 		{% for product in products %}
